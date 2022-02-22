@@ -40,6 +40,9 @@ public class Tag {
         this.name = name;
     }
 
+    public Tag() {
+    }
+
     public List<Blog> getBlogs() {
         return blogs;
     }
