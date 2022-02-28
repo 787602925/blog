@@ -4,6 +4,7 @@ import com.kehao.blog.NotFoundException;
 import com.kehao.blog.dao.BlogRepository;
 import com.kehao.blog.po.Blog;
 import com.kehao.blog.po.Type;
+import com.kehao.blog.util.MyBeanUtils;
 import com.kehao.blog.vo.BlogQuery;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,8 +64,6 @@ public class BlogServiceImpl implements BlogService{
         } else {
             blog.setUpdateTime(new Date());
         }
-
-
         return blogRepository.save(blog);
     }
 
@@ -75,13 +74,14 @@ public class BlogServiceImpl implements BlogService{
         if (b == null) {
             throw new NotFoundException("该博客不存在");
         }
-        BeanUtils.copyProperties(blog, b);
+        BeanUtils.copyProperties(blog, b, MyBeanUtils.getNullPropertyNames(blog));
+        b.setUpdateTime(new Date());
         return blogRepository.save(b);
     }
 
     @Transactional
     @Override
     public void deleteBlog(Long id) {
-
+        blogRepository.deleteById(id);
     }
 }
