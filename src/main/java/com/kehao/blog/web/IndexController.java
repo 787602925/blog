@@ -63,13 +63,13 @@ public class IndexController {
         return "archives";
     }
 
-    @GetMapping("/tags")
-    public String tags(){
-        return "tags";
-    }
+//    @GetMapping("/tags")
+//    public String tags(){
+//        return "tags";
+//    }
 
-    @GetMapping("/types")
-    public String types(){
-        return "types";
-    }
+//    @GetMapping("/types")
+//    public String types(){
+//        return "types";
+//    }
 }
